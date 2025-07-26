@@ -229,11 +229,11 @@ body {
 }
 
 /* Age Selection */
-.age-section {
+.complexity-section {
   margin: 20px 0;
 }
 
-.age-section h3 {
+.complexity-section h3 {
   font-family: var(--font-family-heading);
   color: var(--accent-color);
   margin-bottom: 12px;
@@ -244,22 +244,23 @@ body {
   line-height: 1.2;
 }
 
-.age-options {
+.complexity-options {
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-.age-option {
+.complexity-option {
   flex: 1;
   display: block;
   cursor: pointer;
 }
 
-.age-option input[type="radio"] {
+.complexity-option input[type="radio"] {
   display: none;
 }
 
-.age-option span {
+.complexity-option span {
   display: block;
   padding: 10px 8px;
   text-align: center;
@@ -271,13 +272,13 @@ body {
   transition: all 0.2s ease;
 }
 
-.age-option input[type="radio"]:checked + span {
+.complexity-option input[type="radio"]:checked + span {
   background: var(--accent-color);
   color: var(--text-white);
   border-color: var(--accent-color);
 }
 
-.age-option:hover span {
+.complexity-option:hover span {
   border-color: var(--accent-color);
 }
 
@@ -464,7 +465,7 @@ body {
     padding: 16px;
   }
 
-  .age-options {
+  .complexity-options {
     flex-direction: column;
   }
 }

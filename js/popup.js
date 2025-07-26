@@ -65,7 +65,7 @@ class PopupController {
   showYouTubeInterface() {
     this.hideAllInterfaces();
     document.getElementById("youtube-interface").classList.remove("hidden");
-    document.getElementById("age-section").classList.remove("hidden");
+    document.getElementById("complexity-section").classList.remove("hidden");
   }
 
   showNonYouTubeInterface() {
@@ -78,7 +78,7 @@ class PopupController {
       "youtube-interface",
       "non-youtube-interface",
       "api-key-warning",
-      "age-section",
+      "complexity-section",
       "status",
       "results",
       "error",
@@ -136,7 +136,7 @@ class PopupController {
     });
 
     // Age selection change
-    document.querySelectorAll('input[name="age"]').forEach((radio) => {
+    document.querySelectorAll('input[name="complexity"]').forEach((radio) => {
       radio.addEventListener("change", () => {
         this.saveUserPreferences();
       });
@@ -147,15 +147,15 @@ class PopupController {
     if (this.isProcessing) return;
 
     this.isProcessing = true;
-    this.showStatus("Creating kid-friendly summary...");
+    this.showStatus("Creating professional summary...");
 
     try {
-      const selectedAge = document.querySelector(
-        'input[name="age"]:checked',
+      const selectedComplexity = document.querySelector(
+        'input[name="complexity"]:checked',
       ).value;
 
-      // Store age preference for the background script to use (use defaultAge to match options)
-      await chrome.storage.sync.set({ defaultAge: selectedAge });
+      // Store complexity preference for the background script to use
+      await chrome.storage.sync.set({ complexityLevel: selectedComplexity });
 
       const result = await chrome.runtime.sendMessage({
         action: "summarizeVideo",
@@ -238,19 +238,19 @@ class PopupController {
 
   showHelp() {
     const helpText = `
-How to use YouTube Summarizer for Kids:
+How to use YouTube Summarizer - Professional Edition:
 
 1. 🔧 Set up your Gemini API key in Settings
 2. 📺 Go to any YouTube video
-3. 👶 Select your child's age group
-4. 🎯 Click "Create Kid-Friendly Summary"
-5. 📖 Read the simple summary with Q&A!
+3. 🎯 Select content complexity level
+4. 🎯 Click "Create Professional Summary"
+5. 📜 Read the professional summary with insights!
 
 Features:
-• Simple explanations for children
-• Interactive Q&A sections  
-• Age-appropriate content
-• Colorful, engaging format
+• Professional analysis and insights
+• Intelligent content processing
+• Multiple complexity levels
+• Modern, sophisticated interface
 
 Need help? Check the extension options for more settings!
     `;
@@ -260,14 +260,12 @@ Need help? Check the extension options for more settings!
 
   async loadUserPreferences() {
     try {
-      const result = await chrome.storage.sync.get(["defaultAge"]);
-      if (result.defaultAge) {
-        const radio = document.querySelector(
-          `input[name="age"][value="${result.defaultAge}"]`,
+      const result = await chrome.storage.sync.get(["complexityLevel"]);
+      if (result.complexityLevel) {
+        const complexityRadio = document.querySelector(
+          `input[name="complexity"][value="${result.complexityLevel}"]`,
         );
-        if (radio) {
-          radio.checked = true;
-        }
+        if (complexityRadio) complexityRadio.checked = true;
       }
     } catch (error) {
       console.error("Error loading preferences:", error);
@@ -276,10 +274,10 @@ Need help? Check the extension options for more settings!
 
   async saveUserPreferences() {
     try {
-      const selectedAge = document.querySelector(
-        'input[name="age"]:checked',
+      const selectedComplexity = document.querySelector(
+        'input[name="complexity"]:checked',
       ).value;
-      await chrome.storage.sync.set({ defaultAge: selectedAge });
+      await chrome.storage.sync.set({ complexityLevel: selectedComplexity });
     } catch (error) {
       console.error("Error saving preferences:", error);
     }
