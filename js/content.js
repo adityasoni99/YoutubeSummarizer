@@ -853,13 +853,19 @@ class YouTubeContentScript {
       ? `
     <div style="margin-top: 16px;">
       <button id="yt-summarizer-options-btn" style="
-        background: #ff9f43;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
+        background: linear-gradient(135deg, var(--yt-summarizer-accent), var(--yt-summarizer-warning));
+        color: var(--yt-summarizer-text-white);
+        border: 2px solid transparent;
+        padding: 12px 20px;
+        border-radius: var(--yt-summarizer-border-radius);
         cursor: pointer;
-        font-weight: 600;
+        font-family: var(--yt-summarizer-font-family-heading);
+        font-weight: var(--yt-summarizer-heading-weight);
+        letter-spacing: var(--yt-summarizer-heading-spacing);
+        text-transform: var(--yt-summarizer-heading-transform);
+        font-size: var(--yt-summarizer-font-size-base);
+        box-shadow: var(--yt-summarizer-shadow-medium);
+        transition: all 0.3s ease;
       ">Open Extension Options</button>
     </div>
   `
@@ -885,13 +891,19 @@ class YouTubeContentScript {
       ${optionsButton}
       <div style="margin-top: 16px; text-align: center;">
         <button onclick="location.reload()" style="
-          background: #4ecdc4;
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 6px;
+          background: linear-gradient(135deg, var(--yt-summarizer-success), var(--yt-summarizer-secondary));
+          color: var(--yt-summarizer-text-white);
+          border: 2px solid transparent;
+          padding: 12px 20px;
+          border-radius: var(--yt-summarizer-border-radius);
           cursor: pointer;
-          font-weight: 600;
+          font-family: var(--yt-summarizer-font-family-heading);
+          font-weight: var(--yt-summarizer-heading-weight);
+          letter-spacing: var(--yt-summarizer-heading-spacing);
+          text-transform: var(--yt-summarizer-heading-transform);
+          font-size: var(--yt-summarizer-font-size-base);
+          box-shadow: var(--yt-summarizer-shadow-medium);
+          transition: all 0.3s ease;
           margin-right: 8px;
         ">Try Again</button>
       </div>

@@ -1,47 +1,54 @@
 /* Options page styles for YouTube Summarizer - General Edition */
-/* Professional settings interface for general audience */
+/* Engaging professional design inspired by HTML5UP Massively */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Source+Sans+Pro:wght@400;600;900&display=swap');
 
 :root {
-  /* Professional color palette */
-  --primary-color: #2563eb;      /* Professional blue */
-  --secondary-color: #059669;    /* Forest green */
-  --accent-color: #7c3aed;       /* Deep purple */
-  --success-color: #16a34a;      /* Success green */
-  --warning-color: #d97706;      /* Amber warning */
-  --error-color: #dc2626;        /* Professional red */
+  /* Sophisticated color palette inspired by Massively */
+  --primary-color: #2d5aa0;      /* Rich royal blue */
+  --secondary-color: #0d7377;    /* Teal green */
+  --accent-color: #f4a261;       /* Warm orange */
+  --success-color: #2a9d8f;      /* Success teal */
+  --warning-color: #e76f51;      /* Warm red-orange */
+  --error-color: #d62828;        /* Strong red */
 
   /* Background Colors */
-  --bg-primary: #f8fafc;         /* Light gray */
+  --bg-primary: #fafbfc;         /* Very light blue-gray */
   --bg-secondary: #ffffff;       /* Pure white */
-  --bg-accent: #f1f5f9;          /* Subtle gray */
-  --bg-light: #e2e8f0;           /* Light blue-gray */
-  --bg-dark: #1e293b;            /* Dark slate */
+  --bg-accent: #f8f9fa;          /* Warm light gray */
+  --bg-light: #e9ecef;           /* Neutral light */
 
   /* Text Colors */
-  --text-primary: #1e293b;       /* Dark slate */
-  --text-secondary: #64748b;     /* Medium slate */
-  --text-light: #94a3b8;         /* Light slate */
+  --text-primary: #212529;       /* Rich dark gray */
+  --text-secondary: #495057;     /* Medium gray */
+  --text-light: #6c757d;         /* Light gray */
   --text-white: #ffffff;         /* Pure white */
 
-  /* Borders and Shadows */
-  --border-radius: 8px;
-  --border-radius-large: 12px;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  /* Enhanced visual elements */
+  --border-radius: 6px;          /* Refined rounded corners */
+  --border-radius-small: 4px;
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-  /* Professional typography */
-  --font-family: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 24px;
-  --font-size-2xl: 32px;
+  /* Typography system inspired by Massively */
+  --font-family-body: "Merriweather", Georgia, serif;
+  --font-family-heading: "Source Sans Pro", Helvetica, sans-serif;
+  --font-size-small: 12px;
+  --font-size-base: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+  --font-size-xlarge: 24px;
+  
+  /* Heading specific styles */
+  --heading-weight: 900;
+  --heading-spacing: 0.075em;
+  --heading-transform: uppercase;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
 
   /* Spacing */
-  --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
@@ -56,7 +63,7 @@
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--text-primary);
@@ -85,9 +92,13 @@ body {
 }
 
 .header h1 {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xlarge);
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--heading-spacing);
+  text-transform: var(--heading-transform);
   margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
 }
 
 .subtitle {
@@ -118,10 +129,14 @@ body {
 }
 
 .section-header h2 {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-large);
   color: var(--text-primary);
   margin-bottom: var(--spacing-sm);
-  font-weight: 600;
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--heading-spacing);
+  text-transform: var(--heading-transform);
+  line-height: 1.2;
 }
 
 .section-header p {

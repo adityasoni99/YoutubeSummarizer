@@ -1,69 +1,79 @@
-/* Content script styles for YouTube Summarizer for Kids Chrome Extension */
-/* Styles for elements injected into YouTube pages */
+/* Content script styles for YouTube Summarizer - General Edition */
+/* Engaging professional design inspired by HTML5UP Massively */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Source+Sans+Pro:wght@400;600;900&display=swap');
 
 :root {
-  /* Professional color palette for general audience */
-  --yt-summarizer-primary: #2563eb;      /* Professional blue */
-  --yt-summarizer-secondary: #059669;    /* Forest green */
-  --yt-summarizer-accent: #7c3aed;       /* Deep purple */
-  --yt-summarizer-success: #16a34a;      /* Success green */
-  --yt-summarizer-warning: #d97706;      /* Amber warning */
-  --yt-summarizer-error: #dc2626;        /* Professional red */
+  /* Sophisticated color palette inspired by Massively */
+  --yt-summarizer-primary: #2d5aa0;      /* Rich royal blue */
+  --yt-summarizer-secondary: #0d7377;    /* Teal green */
+  --yt-summarizer-accent: #f4a261;       /* Warm orange */
+  --yt-summarizer-success: #2a9d8f;      /* Success teal */
+  --yt-summarizer-warning: #e76f51;      /* Warm red-orange */
+  --yt-summarizer-error: #d62828;        /* Strong red */
 
-  /* Background colors */
-  --yt-summarizer-bg-primary: #f8fafc;   /* Light gray */
+  /* Background colors - more sophisticated */
+  --yt-summarizer-bg-primary: #fafbfc;   /* Very light blue-gray */
   --yt-summarizer-bg-secondary: #ffffff; /* Pure white */
-  --yt-summarizer-bg-accent: #f1f5f9;    /* Subtle gray */
-  --yt-summarizer-bg-light: #e2e8f0;     /* Light blue-gray */
-  --yt-summarizer-bg-success: #f0fdf4;   /* Light green */
-  --yt-summarizer-bg-error: #fef2f2;     /* Light red */
+  --yt-summarizer-bg-accent: #f8f9fa;    /* Warm light gray */
+  --yt-summarizer-bg-light: #e9ecef;     /* Neutral light */
+  --yt-summarizer-bg-success: #e8f5f3;   /* Light teal */
+  --yt-summarizer-bg-error: #fdeaea;     /* Light warm red */
 
-  /* Text colors */
-  --yt-summarizer-text-primary: #1e293b;   /* Dark slate */
-  --yt-summarizer-text-secondary: #64748b; /* Medium slate */
-  --yt-summarizer-text-light: #94a3b8;     /* Light slate */
+  /* Text colors - inspired by Massively's sophistication */
+  --yt-summarizer-text-primary: #212529;   /* Rich dark gray */
+  --yt-summarizer-text-secondary: #495057; /* Medium gray */
+  --yt-summarizer-text-light: #6c757d;     /* Light gray */
   --yt-summarizer-text-white: #ffffff;     /* Pure white */
 
-  /* Borders and shadows */
-  --yt-summarizer-border-radius: 8px;      /* Subtle rounded corners */
+  /* Enhanced visual elements */
+  --yt-summarizer-border-radius: 6px;      /* Refined rounded corners */
   --yt-summarizer-border-radius-small: 4px;
-  --yt-summarizer-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --yt-summarizer-shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --yt-summarizer-shadow-strong: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --yt-summarizer-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --yt-summarizer-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --yt-summarizer-shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.12);
 
-  /* Professional typography */
-  --yt-summarizer-font-family:
-    "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  /* Typography system inspired by Massively */
+  --yt-summarizer-font-family-body: "Merriweather", Georgia, serif;
+  --yt-summarizer-font-family-heading: "Source Sans Pro", Helvetica, sans-serif;
   --yt-summarizer-font-size-small: 12px;
   --yt-summarizer-font-size-base: 14px;
   --yt-summarizer-font-size-medium: 16px;
   --yt-summarizer-font-size-large: 18px;
   --yt-summarizer-font-size-xlarge: 24px;
+  
+  /* Heading specific styles */
+  --yt-summarizer-heading-weight: 900;
+  --yt-summarizer-heading-spacing: 0.075em;
+  --yt-summarizer-heading-transform: uppercase;
 }
 
-/* Summary Button */
+/* Summary Button - Inspired by Massively's engaging style */
 .yt-summarizer-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 12px 20px;
   margin: 8px;
   background: linear-gradient(
     135deg,
     var(--yt-summarizer-primary),
-    var(--yt-summarizer-accent)
+    var(--yt-summarizer-secondary)
   );
   color: var(--yt-summarizer-text-white);
   border: none;
-  border-radius: var(--yt-summarizer-border-radius-small);
-  font-family: var(--yt-summarizer-font-family);
+  border-radius: var(--yt-summarizer-border-radius);
+  font-family: var(--yt-summarizer-font-family-heading);
   font-size: var(--yt-summarizer-font-size-base);
-  font-weight: 600;
+  font-weight: var(--yt-summarizer-heading-weight);
+  letter-spacing: var(--yt-summarizer-heading-spacing);
+  text-transform: var(--yt-summarizer-heading-transform);
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--yt-summarizer-shadow-light);
+  transition: all 0.3s ease;
+  box-shadow: var(--yt-summarizer-shadow-medium);
   z-index: 1000;
   position: relative;
+  border: 2px solid transparent;
 }
 
 .yt-summarizer-button:hover {
@@ -75,6 +85,13 @@
   opacity: 0.6;
   transform: none;
   cursor: not-allowed;
+}
+
+/* Options Button Specific Styling */
+#yt-summarizer-options-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--yt-summarizer-shadow-strong);
+  background: linear-gradient(135deg, var(--yt-summarizer-warning), var(--yt-summarizer-accent)) !important;
 }
 
 /* View Detailed Summary Button */
@@ -178,7 +195,7 @@
 
 /* Main Summary Panel */
 .yt-summarizer-panel {
-  font-family: var(--yt-summarizer-font-family);
+  font-family: var(--yt-summarizer-font-family-body);
   background: var(--yt-summarizer-bg-secondary);
   border: 2px solid var(--yt-summarizer-secondary);
   border-radius: var(--yt-summarizer-border-radius);
@@ -188,6 +205,7 @@
   z-index: 100;
   position: relative;
   animation: yt-summarizer-slideIn 0.5s ease;
+  line-height: 1.6;
 }
 
 .yt-summarizer-panel.error {
@@ -217,8 +235,12 @@
 .panel-header h2,
 .panel-header h3 {
   margin: 0;
+  font-family: var(--yt-summarizer-font-family-heading);
   font-size: var(--yt-summarizer-font-size-large);
-  font-weight: 700;
+  font-weight: var(--yt-summarizer-heading-weight);
+  letter-spacing: var(--yt-summarizer-heading-spacing);
+  text-transform: var(--yt-summarizer-heading-transform);
+  line-height: 1.2;
 }
 
 .close-btn {
