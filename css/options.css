@@ -1,38 +1,38 @@
-/* Options page styles for YouTube Summarizer for Kids Chrome Extension */
-/* Following PocketFlow design principles with comprehensive settings interface */
+/* Options page styles for YouTube Summarizer - General Edition */
+/* Professional settings interface for general audience */
 
 :root {
-  /* Color Palette - Kid-friendly but professional for settings */
-  --primary-color: #ff6b6b;
-  --secondary-color: #4ecdc4;
-  --accent-color: #ff9f43;
-  --success-color: #7ed321;
-  --warning-color: #f5a623;
-  --error-color: #d0021b;
+  /* Professional color palette */
+  --primary-color: #2563eb;      /* Professional blue */
+  --secondary-color: #059669;    /* Forest green */
+  --accent-color: #7c3aed;       /* Deep purple */
+  --success-color: #16a34a;      /* Success green */
+  --warning-color: #d97706;      /* Amber warning */
+  --error-color: #dc2626;        /* Professional red */
 
   /* Background Colors */
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
-  --bg-accent: #ffe8d6;
-  --bg-light: #e8f4f8;
-  --bg-dark: #2c3e50;
+  --bg-primary: #f8fafc;         /* Light gray */
+  --bg-secondary: #ffffff;       /* Pure white */
+  --bg-accent: #f1f5f9;          /* Subtle gray */
+  --bg-light: #e2e8f0;           /* Light blue-gray */
+  --bg-dark: #1e293b;            /* Dark slate */
 
   /* Text Colors */
-  --text-primary: #2c3e50;
-  --text-secondary: #6c757d;
-  --text-light: #adb5bd;
-  --text-white: #ffffff;
+  --text-primary: #1e293b;       /* Dark slate */
+  --text-secondary: #64748b;     /* Medium slate */
+  --text-light: #94a3b8;         /* Light slate */
+  --text-white: #ffffff;         /* Pure white */
 
   /* Borders and Shadows */
   --border-radius: 8px;
   --border-radius-large: 12px;
-  --border-color: #dee2e6;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 
-  /* Typography */
-  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Professional typography */
+  --font-family: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-base: 16px;

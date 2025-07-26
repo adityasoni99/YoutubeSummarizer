@@ -2,38 +2,38 @@
 /* Styles for elements injected into YouTube pages */
 
 :root {
-  /* Kid-friendly color palette matching the extension theme */
-  --yt-summarizer-primary: #ff6b6b;
-  --yt-summarizer-secondary: #4ecdc4;
-  --yt-summarizer-accent: #ff9f43;
-  --yt-summarizer-success: #7ed321;
-  --yt-summarizer-warning: #f5a623;
-  --yt-summarizer-error: #d0021b;
+  /* Professional color palette for general audience */
+  --yt-summarizer-primary: #2563eb;      /* Professional blue */
+  --yt-summarizer-secondary: #059669;    /* Forest green */
+  --yt-summarizer-accent: #7c3aed;       /* Deep purple */
+  --yt-summarizer-success: #16a34a;      /* Success green */
+  --yt-summarizer-warning: #d97706;      /* Amber warning */
+  --yt-summarizer-error: #dc2626;        /* Professional red */
 
   /* Background colors */
-  --yt-summarizer-bg-primary: #f9f9f9;
-  --yt-summarizer-bg-secondary: #ffffff;
-  --yt-summarizer-bg-accent: #ffe8d6;
-  --yt-summarizer-bg-light: #e8f4f8;
-  --yt-summarizer-bg-success: #e8f5e8;
-  --yt-summarizer-bg-error: #ffeaea;
+  --yt-summarizer-bg-primary: #f8fafc;   /* Light gray */
+  --yt-summarizer-bg-secondary: #ffffff; /* Pure white */
+  --yt-summarizer-bg-accent: #f1f5f9;    /* Subtle gray */
+  --yt-summarizer-bg-light: #e2e8f0;     /* Light blue-gray */
+  --yt-summarizer-bg-success: #f0fdf4;   /* Light green */
+  --yt-summarizer-bg-error: #fef2f2;     /* Light red */
 
   /* Text colors */
-  --yt-summarizer-text-primary: #333333;
-  --yt-summarizer-text-secondary: #666666;
-  --yt-summarizer-text-light: #999999;
-  --yt-summarizer-text-white: #ffffff;
+  --yt-summarizer-text-primary: #1e293b;   /* Dark slate */
+  --yt-summarizer-text-secondary: #64748b; /* Medium slate */
+  --yt-summarizer-text-light: #94a3b8;     /* Light slate */
+  --yt-summarizer-text-white: #ffffff;     /* Pure white */
 
   /* Borders and shadows */
-  --yt-summarizer-border-radius: 10px;
-  --yt-summarizer-border-radius-small: 6px;
-  --yt-summarizer-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --yt-summarizer-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --yt-summarizer-shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --yt-summarizer-border-radius: 8px;      /* Subtle rounded corners */
+  --yt-summarizer-border-radius-small: 4px;
+  --yt-summarizer-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --yt-summarizer-shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --yt-summarizer-shadow-strong: 0 10px 15px rgba(0, 0, 0, 0.1);
 
-  /* Typography */
+  /* Professional typography */
   --yt-summarizer-font-family:
-    "Comic Sans MS", "Chalkboard SE", "Segoe UI", sans-serif;
+    "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   --yt-summarizer-font-size-small: 12px;
   --yt-summarizer-font-size-base: 14px;
   --yt-summarizer-font-size-medium: 16px;
@@ -857,24 +857,24 @@
   }
 }
 
-/* YouTube-specific dark theme detection */
+/* Professional dark theme for YouTube dark mode */
 html[dark],
 html[system-theme="dark"] {
-  --yt-summarizer-bg-primary: #212121;
-  --yt-summarizer-bg-secondary: #181818;
-  --yt-summarizer-bg-accent: #303030;
-  --yt-summarizer-bg-light: #282828;
-  --yt-summarizer-text-primary: #f5f5f5;
-  --yt-summarizer-text-secondary: #aaaaaa;
-  --yt-summarizer-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --yt-summarizer-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --yt-summarizer-shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --yt-summarizer-bg-primary: #0f172a;     /* Dark slate */
+  --yt-summarizer-bg-secondary: #1e293b;   /* Darker slate */
+  --yt-summarizer-bg-accent: #334155;      /* Medium slate */
+  --yt-summarizer-bg-light: #475569;       /* Lighter slate */
+  --yt-summarizer-text-primary: #f1f5f9;   /* Light gray */
+  --yt-summarizer-text-secondary: #cbd5e1; /* Medium gray */
+  --yt-summarizer-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --yt-summarizer-shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --yt-summarizer-shadow-strong: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 
 html[dark] .yt-summarizer-panel,
 html[system-theme="dark"] .yt-summarizer-panel {
-  background: #212121;
-  color: #f5f5f5;
+  background: var(--yt-summarizer-bg-secondary);
+  color: var(--yt-summarizer-text-primary);
   border-color: var(--yt-summarizer-secondary);
 }
 
@@ -886,8 +886,8 @@ html[system-theme="dark"] .summary,
 html[system-theme="dark"] .connections,
 html[system-theme="dark"] .topic-summary,
 html[system-theme="dark"] .explanation {
-  background: #303030;
-  border-color: #555;
+  background: var(--yt-summarizer-bg-accent);
+  border-color: var(--yt-summarizer-bg-light);
 }
 
 html[dark] .topic,
