@@ -1,4 +1,4 @@
-// Background service worker for YouTube Summarizer for Kids Chrome Extension
+// Background service worker for YouTube Summarizer - General Edition Chrome Extension
 // Implements the PocketFlow design pattern with Map-Reduce approach
 
 class YouTubeSummarizerFlow {
@@ -109,7 +109,7 @@ class YouTubeSummarizerFlow {
       // More flexible content validation
       if (!result.transcript || result.transcript.length < 30) {
         throw new Error(
-          "Insufficient video content for summarization. This video may not have captions, description, or other extractable content. Please try a different educational video.",
+          "Insufficient video content for summarization. This video may not have captions, description, or other extractable content. Please try a different video with more available content.",
         );
       }
 
@@ -160,7 +160,7 @@ ${transcript}
 TASK:
 1. Identify ${maxTopics} main topics or themes from this video content (or fewer if the content doesn't support that many).
 2. For each topic, create a brief description.
-3. Create a kid-friendly initial summary of the overall video (150-200 words).
+3. Create a professional yet engaging initial summary of the overall video (150-200 words).
 4. Format your response as JSON following this structure:
 
 {
@@ -172,7 +172,7 @@ TASK:
     },
     // more topics...
   ],
-  "initialSummary": "A clear, simple summary of the video suitable for children."
+  "initialSummary": "A clear, informative summary that captures the video's key insights and value."
 }
 
 Only include valid JSON in your response.`;
@@ -222,15 +222,15 @@ Only include valid JSON in your response.`;
     this.log("Processing topics...");
     const processedTopics = [];
 
-    // Get user's age preference from settings
-    const settings = await chrome.storage.sync.get(["defaultAge"]);
-    const targetAge = settings.defaultAge || "6-8";
-    this.log("Target age:", targetAge);
+    // Get user's complexity preference from settings
+    const settings = await chrome.storage.sync.get(["complexityLevel"]);
+    const complexityLevel = settings.complexityLevel || "standard";
+    this.log("Complexity level:", complexityLevel);
 
     // Process each topic independently (Map phase)
     for (const topic of this.shared.topics) {
       try {
-        const processed = await this.processSingleTopic(topic, targetAge);
+        const processed = await this.processSingleTopic(topic, complexityLevel);
         processedTopics.push(processed);
       } catch (error) {
         this.log("Failed to process topic:", topic.name, error.message);
@@ -256,46 +256,46 @@ Only include valid JSON in your response.`;
     return { success: true, processedCount: processedTopics.length };
   }
 
-  async processSingleTopic(topic, targetAge) {
-    const agePrompts = {
-      "3-5":
-        "Use very simple words and basic concepts that a 3-5 year old would understand. Use fun analogies and short sentences.",
-      "6-8":
-        "Use elementary school level language that a 6-8 year old would understand. Include some educational details but keep it simple.",
-      "9-12":
-        "Use middle school level language that a 9-12 year old would understand. Include more detailed explanations but keep it engaging.",
+  async processSingleTopic(topic, complexityLevel = "standard") {
+    const complexityPrompts = {
+      "basic":
+        "Use clear, accessible language suitable for general audiences. Focus on core concepts with practical examples.",
+      "standard":
+        "Use professional language with detailed explanations. Include context and relevant background information.",
+      "advanced":
+        "Use sophisticated language with comprehensive analysis. Include technical details and industry insights.",
     };
 
-    const ageInstruction = agePrompts[targetAge] || agePrompts["6-8"];
+    const complexityInstruction = complexityPrompts[complexityLevel] || complexityPrompts["standard"];
 
-    const prompt = `You are creating a child-friendly explanation for a YouTube video topic.
+    const prompt = `You are creating a comprehensive explanation for a YouTube video topic for a general professional audience.
 
-TARGET AGE: ${targetAge} years old
-AGE INSTRUCTION: ${ageInstruction}
+COMPLEXITY LEVEL: ${complexityLevel}
+STYLE INSTRUCTION: ${complexityInstruction}
 
 TOPIC: ${topic.name}
 CONTENT: ${topic.content}
 
 TASK:
-1. Create a very simple summary of this topic that fits the target age.
-2. Create a detailed but age-appropriate explanation.
-3. Create 2-3 question and answer pairs that a curious child might ask.
+1. Create a concise but informative summary of this topic.
+2. Create a detailed explanation that provides valuable insights.
+3. Create 2-3 question and answer pairs that address common interests or concerns about this topic.
 
 Format your response as JSON:
 
 {
-  "summary": "Your child-friendly summary here",
-  "explanation": "Your detailed but simple explanation here",
-  "qaPairs": [
-    {
-      "question": "First question?",
-      "answer": "Simple answer for the first question"
-    },
-    {
-      "question": "Second question?",
-      "answer": "Simple answer for the second question"
-    }
-  ]
+"summary": "Your informative summary here",
+"explanation": "Your detailed professional explanation here",
+"qaPairs": [
+  {
+    "question": "First relevant question?",
+    "answer": "Comprehensive answer to the first question"
+  },
+  {
+    "question": "Second relevant question?",
+    "answer": "Comprehensive answer to the second question"
+  }
+]
 }
 
 Only include valid JSON in your response.`;
@@ -326,7 +326,7 @@ Only include valid JSON in your response.`;
         qaPairs: qaData.qaPairs || [
           {
             question: `What is ${topic.name}?`,
-            answer: "It's something educational from the video!",
+            answer: "It's something interesting discussed in the video!",
           },
         ],
       };
@@ -356,7 +356,7 @@ Only include valid JSON in your response.`;
       )
       .join("\n\n");
 
-    const prompt = `You are reviewing child-friendly explanations of topics from a YouTube video.
+    const prompt = `You are reviewing professional explanations of topics from a YouTube video.
 
 VIDEO TITLE: ${this.shared.videoInfo.title}
 
@@ -364,8 +364,8 @@ TOPICS OVERVIEW:
 ${topicInfo}
 
 TASK:
-1. Create 1-2 connections between topics to form a cohesive story.
-2. Rank the topics by importance for learning.
+1. Create 1-2 meaningful connections between topics to form a cohesive narrative.
+2. Rank the topics by importance and relevance for the audience.
 
 Format your response as JSON:
 
@@ -378,7 +378,7 @@ Format your response as JSON:
     {
       "topicId": 1,
       "importance": "high",
-      "reason": "Why this topic is important"
+      "reason": "Why this topic is important for the audience"
     }
   ]
 }
@@ -421,7 +421,7 @@ Only include valid JSON in your response.`;
       !this.shared.processedTopics ||
       this.shared.processedTopics.length === 0
     ) {
-      this.shared.summary = `This video "${this.shared.videoInfo.title}" contains educational content that can be fun to learn about!`;
+      this.shared.summary = `This video "${this.shared.videoInfo.title}" contains valuable insights worth exploring!`;
       return { success: true, fallback: true };
     }
 
@@ -434,8 +434,8 @@ Only include valid JSON in your response.`;
         ? this.shared.topicConnections.map((conn) => `- ${conn}`).join("\n")
         : "";
 
-    const prompt = `You are creating a simple overall summary of a YouTube video for children.
-The summary should be suitable for children to understand.
+    const prompt = `You are creating a comprehensive overall summary of a YouTube video for a general professional audience.
+The summary should be informative and engaging.
 
 VIDEO TITLE: ${this.shared.videoInfo.title}
 
@@ -446,9 +446,9 @@ CONNECTIONS BETWEEN TOPICS:
 ${connections || "No specific connections identified."}
 
 TASK:
-Create a very simple, engaging overall summary of this video that children would understand.
-Use simple words, fun language, and a friendly tone.
-Keep it to 3-4 sentences.
+Create a professional, engaging overall summary of this video that captures its key value.
+Use clear, accessible language that provides actionable insights.
+Keep it to 3-4 sentences that highlight the main takeaways.
 
 Your summary:`;
 
@@ -459,7 +459,7 @@ Your summary:`;
     } catch (error) {
       this.log("Summary creation failed:", error.message);
       // Fallback summary
-      this.shared.summary = `This video "${this.shared.videoInfo.title}" talks about ${this.shared.processedTopics.length} main topics that are fun to learn about!`;
+      this.shared.summary = `This video "${this.shared.videoInfo.title}" covers ${this.shared.processedTopics.length} main topics with valuable insights!`;
       return { success: true, fallback: true };
     }
   }
@@ -469,7 +469,7 @@ Your summary:`;
     this.log("Creating initial summary...");
 
     if (!this.shared.topics || this.shared.topics.length === 0) {
-      this.shared.initialSummary = `This video "${this.shared.videoInfo.title}" contains educational content that can be fun to learn about!`;
+      this.shared.initialSummary = `This video "${this.shared.videoInfo.title}" contains valuable insights worth exploring!`;
       return { success: true, fallback: true };
     }
 
@@ -477,7 +477,7 @@ Your summary:`;
       .map((topic) => `- ${topic.name}`)
       .join("\n");
 
-    const prompt = `You are creating an initial summary of a YouTube video for children.
+    const prompt = `You are creating an initial summary of a YouTube video for a general professional audience.
 This summary should highlight the main topics without going into detail.
 
 VIDEO TITLE: ${this.shared.videoInfo.title}
@@ -486,9 +486,9 @@ MAIN TOPICS:
 ${topicHighlights}
 
 TASK:
-Create a very simple, engaging initial summary of this video that children would understand.
-Use simple words and a friendly tone.
-Keep it to 2-3 sentences.
+Create a concise, engaging initial summary of this video that captures its key value.
+Use professional yet accessible language.
+Keep it to 2-3 sentences that convey the main insights.
 
 Your summary:`;
 
@@ -508,12 +508,12 @@ Your summary:`;
   async createDetailedSummary() {
     this.log("Creating detailed summary...");
 
-    // Get settings for target age and summary preferences
+    // Get settings for complexity level and summary preferences
     const settings = await chrome.storage.sync.get([
-      "defaultAge",
+      "complexityLevel",
       "summaryLength",
     ]);
-    const targetAge = settings.defaultAge || "6-8";
+    const complexityLevel = settings.complexityLevel || "standard";
     const summaryLength = settings.summaryLength || "medium";
 
     // Adjust word count based on length preference
@@ -524,7 +524,7 @@ Your summary:`;
     };
     const targetLength = lengthMap[summaryLength] || lengthMap["medium"];
 
-    const prompt = `You are creating a detailed summary of a YouTube video for young children (age range: ${targetAge}).
+    const prompt = `You are creating a detailed summary of a YouTube video for a general professional audience (complexity level: ${complexityLevel}).
 
 VIDEO TITLE: ${this.shared.videoInfo.title}
 
@@ -535,12 +535,12 @@ TOPIC CONNECTIONS:
 ${JSON.stringify(this.shared.topicConnections, null, 2)}
 
 TASK:
-Create a thorough but accessible detailed summary that:
-1. Uses simple, engaging language suitable for children aged ${targetAge}
+Create a thorough and informative detailed summary that:
+1. Uses professional language appropriate for ${complexityLevel} complexity level
 2. Captures the main points and how they connect
 3. Is approximately ${targetLength}
-4. Doesn't include complex terminology without explanation
-5. Uses a friendly, positive tone
+4. Provides valuable insights and actionable information
+5. Uses an engaging yet professional tone
 
 SUMMARY:`;
 
@@ -744,7 +744,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Install/startup handler
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("YouTube Summarizer for Kids extension installed");
+  console.log("YouTube Summarizer - General Edition extension installed");
 });
 
 class SummaryDownloadManager {

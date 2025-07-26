@@ -1,10 +1,10 @@
-// Options page script for YouTube Summarizer for Kids Chrome Extension
+// Options page script for YouTube Summarizer - General Edition Chrome Extension
 
 class OptionsController {
   constructor() {
     this.defaultSettings = {
       geminiApiKey: "",
-      defaultAge: "6-8",
+      complexityLevel: "standard",
 
       maxTopics: 5,
       summaryLength: "medium",
@@ -26,11 +26,11 @@ class OptionsController {
       // API Key
       document.getElementById("api-key").value = settings.geminiApiKey || "";
 
-      // Default Age
-      const ageRadio = document.querySelector(
-        `input[name="default-age"][value="${settings.defaultAge}"]`,
+      // Complexity Level
+      const complexityRadio = document.querySelector(
+        `input[name="complexity-level"][value="${settings.complexityLevel}"]`,
       );
-      if (ageRadio) ageRadio.checked = true;
+      if (complexityRadio) complexityRadio.checked = true;
 
 
 
@@ -107,7 +107,7 @@ class OptionsController {
     try {
       const settings = {
         geminiApiKey: document.getElementById("api-key").value.trim(),
-        defaultAge: document.querySelector('input[name="default-age"]:checked')
+        complexityLevel: document.querySelector('input[name="complexity-level"]:checked')
           .value,
         // Skip disabled/planned features for now
         // largeFonts: document.getElementById('large-fonts').checked,
