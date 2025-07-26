@@ -1,0 +1,62 @@
+{
+  "name": "youtube-summarizer-kids-extension",
+  "version": "1.0.0",
+  "description": "Chrome Extension that creates kid-friendly summaries of YouTube videos with Q&A pairs and simple explanations",
+  "main": "manifest.json",
+  "scripts": {
+    "lint": "eslint js/**/*.js",
+    "format": "prettier --write \"**/*.{js,html,css,json,md}\"",
+    "build": "npm run lint && npm run format",
+    "package": "zip -r youtube-summarizer-extension.zip . -x \"node_modules/*\" \"*.git*\" \"package*.json\" \"*.md\" \".eslint*\" \".prettier*\" \"tests/*\" \"coverage/*\" \"jest.config.js\"",
+    "dev": "echo 'Load the extension folder in Chrome://extensions with Developer Mode enabled'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --collectCoverageFrom=\"tests/**/*.test.js\"",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:e2e": "jest tests/e2e",
+    "test:manual": "echo 'Manual testing required - load extension and test on YouTube videos'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "youtube",
+    "kids",
+    "education",
+    "summarization",
+    "ai",
+    "gemini",
+    "manifest-v3",
+    "pocketflow"
+  ],
+  "author": "YouTube Summarizer Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adityasoni99/YoutubeSummarizerKidsExtension"
+  },
+  "homepage": "https://github.com/adityasoni99/YoutubeSummarizerKidsExtension#readme",
+  "bugs": {
+    "url": "https://github.com/adityasoni99/YoutubeSummarizerKidsExtension/issues"
+  },
+  "devDependencies": {
+    "@jest/globals": "^27.5.1",
+    "eslint": "^8.50.0",
+    "jest": "^27.5.1",
+    "jest-chrome": "^0.8.0",
+    "jest-environment-jsdom": "^27.5.1",
+    "prettier": "^3.0.0",
+    "puppeteer": "^24.15.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 88"
+  ],
+  "extension": {
+    "type": "chrome-extension",
+    "manifest_version": 3,
+    "target_browser": "chrome",
+    "min_chrome_version": "88"
+  }
+}
