@@ -1,6 +1,6 @@
-# Extension Icons
+# Extension Icons - Professional General Edition
 
-This folder should contain the extension icons in PNG format:
+This folder contains professional extension icons for the YouTube Summarizer General Edition.
 
 ## Required Icons:
 
@@ -11,13 +11,24 @@ This folder should contain the extension icons in PNG format:
 
 ## Design Guidelines:
 
-- Use a kid-friendly design with bright, cheerful colors
-- Include elements suggesting video/YouTube (play button, screen, etc.)
-- Include elements suggesting children/education (books, pencils, etc.)
-- Use the brand colors from the extension:
-  - Primary: #ff6b6b (coral red)
-  - Secondary: #4ecdc4 (teal)
-  - Accent: #ff9f43 (orange)
+- **Professional, sophisticated design** suitable for general adult audience
+- **Clean, modern aesthetics** inspired by HTML5UP Massively template
+- **Video/content analysis elements**: play button, document summary, analytics icons
+- **Professional symbolism**: documents, charts, intelligence/AI elements
+- **Brand color palette**:
+  - Primary: #2d5aa0 (rich royal blue)
+  - Secondary: #0d7377 (teal green)
+  - Accent: #f4a261 (warm orange)
+
+## Current Status:
+✅ **Professional icons complete**: All required sizes generated with modern, sophisticated design for general audience.
+
+## Design Features:
+1. **Rich royal blue** (#2d5aa0) primary color for trust and professionalism
+2. **Teal green** (#0d7377) accents for innovation and sophistication
+3. **Warm orange** (#f4a261) highlights for engagement and intelligence
+4. **Video + AI symbolism**: Play button with document summary lines and intelligence indicators
+5. **Clean, modern aesthetic** consistent with HTML5UP Massively-inspired UI
 
 ## Suggested Design Elements:
 
