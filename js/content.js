@@ -992,7 +992,7 @@ class YouTubeContentScript {
       <div class="topic-initial">
         <h3>📚 ${topic.name}</h3>
         <div class="topic-content">
-          ${topic.content}
+          ${this.formatTextForHTML(topic.content)}
         </div>
       </div>
     `,
@@ -1012,7 +1012,7 @@ class YouTubeContentScript {
         
         <div class="summary">
           <h3>📝 What's this video about?</h3>
-          <p>${summary}</p>
+          ${this.formatTextForHTML(summary)}
         </div>
 
         <div class="topics">
@@ -1051,7 +1051,7 @@ class YouTubeContentScript {
         <div class="connections">
           <h3>🔗 How these topics connect:</h3>
           <ul>
-            ${topicConnections.map((conn) => `<li>${conn}</li>`).join("")}
+            ${topicConnections.map((conn) => `<li>${this.formatInlineText(conn)}</li>`).join("")}
           </ul>
         </div>
       `;
@@ -1063,7 +1063,7 @@ class YouTubeContentScript {
       <div class="topic">
         <h3>📚 ${topic.name}</h3>
         <div class="topic-summary">
-          <strong class="section-title">Quick Summary:</strong> ${topic.summary}
+          <strong class="section-title">Quick Summary:</strong> ${this.formatInlineText(topic.summary)}
         </div>
         <div class="explanation-section">
           <div class="explanation-header">
@@ -1072,7 +1072,7 @@ class YouTubeContentScript {
           </div>
           <div class="explanation-content">
             <div class="explanation">
-              ${topic.explanation}
+              ${this.formatTextForHTML(topic.explanation)}
             </div>
           </div>
         </div>
@@ -1086,8 +1086,8 @@ class YouTubeContentScript {
               .map(
                 (qa) => `
               <div class="qa">
-                <div class="question">Q: ${qa.question}</div>
-                <div class="answer">A: ${qa.answer}</div>
+                <div class="question">Q: ${this.formatInlineText(qa.question)}</div>
+                <div class="answer">A: ${this.formatTextForHTML(qa.answer)}</div>
               </div>
             `,
               )
@@ -1112,7 +1112,7 @@ class YouTubeContentScript {
         
         <div class="summary">
           <h3>📝 What's this video about?</h3>
-          <p>${summary}</p>
+          ${this.formatTextForHTML(summary)}
         </div>
 
         ${connectionsHTML}
