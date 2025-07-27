@@ -779,7 +779,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Install/startup handler
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("YouTube Summarizer - General Edition extension installed");
+  // Extension installed successfully
 });
 
 class SummaryDownloadManager {
