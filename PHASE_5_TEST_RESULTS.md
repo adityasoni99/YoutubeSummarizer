@@ -62,6 +62,34 @@ This document tracks the comprehensive testing of all extension features before 
 
 ---
 
+### ✅ Phase 0.75: Cross-Extension Text Formatting Fix
+**Status:** COMPLETED ✅  
+**Date:** January 27, 2025
+
+**Issue Identified:** Text formatting inconsistency where **bold** text from LLM responses showed as raw asterisks on YouTube pages but formatted correctly in downloadable HTML exports.
+
+**Fix Applied to Both Extensions:**
+- **General Edition:** `/Users/Aditya.Soni/VSCodeProjects/youtube-summarizer-general/`
+- **Kids Edition:** `/Users/Aditya.Soni/VSCodeProjects/youtube-summarizer-extension/`
+
+**Changes Made:**
+- [x] Applied `formatTextForHTML()` and `formatInlineText()` consistently
+- [x] Fixed main summary text in both initial and detailed views
+- [x] Fixed topic content, summaries, explanations, and Q&A sections  
+- [x] Fixed topic connections formatting
+- [x] Added CSS rules for `.summary ul` and `.summary li` elements
+- [x] Committed changes to both repositories
+
+**Verification:**
+- [x] Bold text (`**text**`) now displays as `<strong>text</strong>` on YouTube pages
+- [x] Bullet points maintain consistent font sizing
+- [x] All LLM formatting renders uniformly across both display and export
+- [x] Professional appearance maintained in both extensions
+
+**Result:** ✅ PASS - Text formatting now consistent across both extensions
+
+---
+
 ### 🔄 Phase 1: Core Functionality Testing
 **Status:** PENDING  
 **Next:** Manual testing on live YouTube videos
