@@ -5,10 +5,14 @@ class OptionsController {
     this.defaultSettings = {
       geminiApiKey: "",
       complexityLevel: "standard",
-
       maxTopics: 5,
-      summaryLength: "medium",
+      summaryLength: "standard",
+      summaryFormat: "bullets",
+      detailLevel: "balanced",
+      includeTimestamps: false,
       autoSummarize: true, // Auto-detect new videos by default
+      enableExport: false,
+      exportFormat: "text",
     };
 
     this.init();
@@ -34,12 +38,18 @@ class OptionsController {
 
 
 
-      // Advanced
+      // Advanced Settings
       document.getElementById("max-topics").value = settings.maxTopics;
       this.updateRangeDisplay("max-topics", settings.maxTopics + " topics");
       document.getElementById("summary-length").value = settings.summaryLength;
-      document.getElementById("auto-summarize").checked =
-        settings.autoSummarize;
+      document.getElementById("summary-format").value = settings.summaryFormat;
+      document.getElementById("detail-level").value = settings.detailLevel;
+      document.getElementById("include-timestamps").checked = settings.includeTimestamps;
+      document.getElementById("auto-summarize").checked = settings.autoSummarize;
+      
+      // Export & Professional Features
+      document.getElementById("export-format").value = settings.exportFormat;
+      document.getElementById("enable-export").checked = settings.enableExport;
     } catch (error) {
       console.error("Error loading settings:", error);
       this.showStatus("Error loading settings", "error");
@@ -116,7 +126,12 @@ class OptionsController {
         // summaryLanguage: document.getElementById('summary-language').value,
         maxTopics: parseInt(document.getElementById("max-topics").value),
         summaryLength: document.getElementById("summary-length").value,
+        summaryFormat: document.getElementById("summary-format").value,
+        detailLevel: document.getElementById("detail-level").value,
+        includeTimestamps: document.getElementById("include-timestamps").checked,
         autoSummarize: document.getElementById("auto-summarize").checked,
+        enableExport: document.getElementById("enable-export").checked,
+        exportFormat: document.getElementById("export-format").value,
       };
 
       await chrome.storage.sync.set(settings);

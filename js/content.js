@@ -1,4 +1,4 @@
-// Content script for YouTube Summarizer for Kids Chrome Extension
+// Content script for YouTube Summarizer - General Edition Chrome Extension
 // Runs on YouTube pages to extract video information and display summaries
 
 class YouTubeContentScript {
@@ -524,7 +524,7 @@ class YouTubeContentScript {
     Channel: ${channel || "YouTube Channel"}. 
     ${additionalInfo}
     This educational video discusses topics related to: ${title.toLowerCase()}. 
-    Based on the title, this content likely covers educational concepts that can be explained in a kid-friendly way with simple examples and easy-to-understand language. 
+    Based on the title, this content covers topics that can be explained clearly with practical examples and professional insights. 
     The video appears to be about educational topics that children can learn from, focusing on ${this.extractKeywords(title).join(", ")}.`;
 
     return metadata.length > 100 ? metadata : null;
@@ -718,7 +718,7 @@ class YouTubeContentScript {
   createSummaryButton() {
     const button = document.createElement("button");
     button.id = "yt-summarizer-btn";
-    button.innerHTML = "🎬 Kid-Friendly Summary";
+    button.innerHTML = "🎬 Smart Summary";
     button.className = "yt-summarizer-button";
     button.addEventListener("click", () => this.handleSummarizeClick());
     return button;
@@ -791,7 +791,7 @@ class YouTubeContentScript {
   hideLoadingState() {
     const button = document.getElementById("yt-summarizer-btn");
     if (button) {
-      button.innerHTML = "🎬 Kid-Friendly Summary";
+      button.innerHTML = "🎬 Smart Summary";
       button.disabled = false;
       button.style.opacity = "1";
     }
@@ -1001,7 +1001,7 @@ class YouTubeContentScript {
 
     return `
       <div class="panel-header">
-        <h2>🎬 Kid-Friendly Summary</h2>
+        <h2>🎬 Video Summary</h2>
         <button class="close-btn" onclick="this.parentElement.parentElement.remove()">×</button>
       </div>
       <div class="panel-content">
@@ -1031,11 +1031,11 @@ class YouTubeContentScript {
           <button id="download-summary" class="download-button">
             <span class="button-icon">💾</span> Download Summary
           </button>
-          <div class="download-info">Save this summary as an HTML file</div>
+          <div class="download-info">Export format configured in settings</div>
         </div>
 
         <div class="footer">
-          <p>✨ This summary was created to help kids understand the video better!</p>
+          <p>✨ This summary was created using AI to help you understand the video content.</p>
         </div>
       </div>
     `;
@@ -1101,7 +1101,7 @@ class YouTubeContentScript {
 
     return `
       <div class="panel-header">
-        <h2>🎬 Kid-Friendly Detailed Summary</h2>
+        <h2>🎬 Detailed Summary</h2>
         <button class="close-btn" onclick="this.parentElement.parentElement.remove()">×</button>
       </div>
       <div class="panel-content">
@@ -1126,11 +1126,11 @@ class YouTubeContentScript {
           <button id="download-summary" class="download-button">
             <span class="button-icon">💾</span> Download Summary
           </button>
-          <div class="download-info">Save this detailed summary as an HTML file</div>
+          <div class="download-info">Save this detailed summary in your preferred format</div>
         </div>
 
         <div class="footer">
-          <p>✨ This detailed summary was created to help kids understand the video better!</p>
+          <p>✨ This detailed summary was created using AI to provide comprehensive insights.</p>
         </div>
       </div>
     `;
@@ -1333,18 +1333,30 @@ class YouTubeContentScript {
         downloadButton.disabled = true;
       }
 
-      // Request HTML generation from background script
+      // Get export format from user settings
+      const settings = await chrome.storage.sync.get(['exportFormat', 'enableExport']);
+      const exportFormat = settings.exportFormat || 'html';
+      const enableExport = settings.enableExport || false;
+      
+      // Use HTML format if export is disabled, otherwise use user preference
+      // Default to HTML for backward compatibility, but users can enable advanced export
+      const downloadFormat = enableExport ? exportFormat : 'html';
+
+      // Request content generation from background script
       const response = await chrome.runtime.sendMessage({
         action: "downloadSummary",
         data: data,
+        format: downloadFormat,
       });
 
       if (response.success) {
-        this.log("Download HTML generated successfully");
-        this.triggerDownload(response.html, response.filename);
+        this.log(`Download ${downloadFormat.toUpperCase()} generated successfully`);
+        // Use content if available (new formats), fallback to html for compatibility
+        const downloadContent = response.content || response.html;
+        this.triggerDownload(downloadContent, response.filename, response.mimeType);
         this.showDownloadNotification(
           "success",
-          "Summary downloaded successfully!",
+          `Summary downloaded successfully as ${downloadFormat.toUpperCase()}!`,
         );
       } else {
         throw new Error(response.error || "Failed to generate download");
@@ -1366,10 +1378,10 @@ class YouTubeContentScript {
     }
   }
 
-  triggerDownload(htmlContent, filename) {
+  triggerDownload(content, filename, mimeType = 'text/html;charset=utf-8') {
     try {
-      // Create blob with HTML content
-      const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+      // Create blob with appropriate content type
+      const blob = new Blob([content], { type: mimeType });
       const url = URL.createObjectURL(blob);
 
       // Create temporary download link
@@ -1386,7 +1398,7 @@ class YouTubeContentScript {
       // Clean up
       setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-      this.log("Download triggered successfully:", filename);
+      this.log(`Download triggered successfully: ${filename} (${mimeType})`);
     } catch (error) {
       this.log("Failed to trigger download:", error.message);
       throw error;

@@ -1,4 +1,4 @@
-// Popup script for YouTube Summarizer for Kids Chrome Extension
+// Popup script for YouTube Summarizer - General Edition Chrome Extension
 
 class PopupController {
   constructor() {

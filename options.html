@@ -216,10 +216,53 @@
           <div class="form-group">
             <label for="summary-length">Summary Length:</label>
             <select id="summary-length">
-              <option value="short">Short (2-3 sentences)</option>
-              <option value="medium" selected>Medium (4-5 sentences)</option>
-              <option value="long">Long (6-8 sentences)</option>
+              <option value="brief">Brief (2-3 key points)</option>
+              <option value="standard" selected>Standard (4-6 detailed points)</option>
+              <option value="comprehensive">Comprehensive (8-10 in-depth points)</option>
+              <option value="executive">Executive Summary (1-2 paragraphs)</option>
             </select>
+            <div class="help-text">
+              <p>Choose summary depth based on your needs</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="summary-format">Summary Format:</label>
+            <select id="summary-format">
+              <option value="bullets" selected>Bullet Points</option>
+              <option value="paragraphs">Paragraphs</option>
+              <option value="outline">Structured Outline</option>
+              <option value="qa">Q&A Format</option>
+            </select>
+            <div class="help-text">
+              <p>Select the presentation style for your summaries</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="detail-level">Analysis Detail Level:</label>
+            <select id="detail-level">
+              <option value="overview">Overview Only</option>
+              <option value="balanced" selected>Balanced Analysis</option>
+              <option value="detailed">Detailed Analysis</option>
+              <option value="comprehensive">Comprehensive Deep-dive</option>
+            </select>
+            <div class="help-text">
+              <p>Controls depth of topic analysis and insights</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-option">
+              <input type="checkbox" id="include-timestamps" />
+              <span class="checkbox-custom"></span>
+              <div class="checkbox-content">
+                <strong>Include timestamps</strong>
+                <small
+                  >Add timestamp references for key points in summaries (when available).</small
+                >
+              </div>
+            </label>
           </div>
 
           <div class="form-group">
@@ -232,6 +275,40 @@
                   >Automatically show summary button when navigating to new
                   videos. If disabled, you can still access summaries through
                   the extension popup.</small
+                >
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Export & Professional Features -->
+        <section class="section">
+          <div class="section-header">
+            <h2>📄 Export & Professional Features</h2>
+            <p>Advanced options for professional use</p>
+          </div>
+
+          <div class="form-group">
+            <label for="export-format">Export Format:</label>
+            <select id="export-format">
+              <option value="text" selected>Plain Text</option>
+              <option value="markdown">Markdown</option>
+              <option value="html">HTML</option>
+              <option value="json">JSON (Data)</option>
+            </select>
+            <div class="help-text">
+              <p>Choose format for exporting summaries</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-option">
+              <input type="checkbox" id="enable-export" />
+              <span class="checkbox-custom"></span>
+              <div class="checkbox-content">
+                <strong>Enable export functionality</strong>
+                <small
+                  >Add export buttons to summaries for saving in various formats.</small
                 >
               </div>
             </label>
@@ -255,7 +332,7 @@
       <footer class="footer">
         <div class="footer-links">
           <a
-            href="https://github.com/adityasoni99/YoutubeSummarizerKids"
+            href="https://github.com/adityasoni99/youtube-summarizer-general"
             target="_blank"
             rel="noopener"
             >📖 Documentation</a
