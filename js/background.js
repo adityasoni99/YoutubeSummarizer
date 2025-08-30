@@ -144,7 +144,7 @@ class YouTubeSummarizerFlow {
     const maxTopics = settings.maxTopics || 5;
 
     // Truncate transcript if too long to avoid API limits
-    const maxLength = 8000;
+    const maxLength = 800000;
     const transcript =
       this.shared.transcript.length > maxLength
         ? this.shared.transcript.substring(0, maxLength) + "..."
