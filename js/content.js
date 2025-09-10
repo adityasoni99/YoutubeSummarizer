@@ -8,7 +8,7 @@ class YouTubeContentScript {
     this.isProcessing = false;
     this.retryCount = 0;
     this.maxRetries = 3;
-    this.debugMode = false; // Disabled for production
+    this.debugMode = true; // Disabled for production
   }
 
   init() {
@@ -853,18 +853,15 @@ class YouTubeContentScript {
       ? `
     <div style="margin-top: 16px;">
       <button id="yt-summarizer-options-btn" style="
-        background: linear-gradient(135deg, var(--yt-summarizer-accent), var(--yt-summarizer-warning));
-        color: var(--yt-summarizer-text-white);
-        border: 2px solid transparent;
+        background: #ff9f43;
+        color: white;
+        border: none;
         padding: 12px 20px;
-        border-radius: var(--yt-summarizer-border-radius);
+        border-radius: 8px;
         cursor: pointer;
-        font-family: var(--yt-summarizer-font-family-heading);
-        font-weight: var(--yt-summarizer-heading-weight);
-        letter-spacing: var(--yt-summarizer-heading-spacing);
-        text-transform: var(--yt-summarizer-heading-transform);
-        font-size: var(--yt-summarizer-font-size-base);
-        box-shadow: var(--yt-summarizer-shadow-medium);
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         transition: all 0.3s ease;
       ">Open Extension Options</button>
     </div>
