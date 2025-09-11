@@ -8,7 +8,7 @@ class YouTubeContentScript {
     this.isProcessing = false;
     this.retryCount = 0;
     this.maxRetries = 3;
-    this.debugMode = true; // Disabled for production
+    this.debugMode = false; // Disabled for production
   }
 
   init() {

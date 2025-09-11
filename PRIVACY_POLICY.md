@@ -189,7 +189,7 @@ Our extension requests minimal permissions:
 ### Privacy Concerns
 If you have questions about this privacy policy or our privacy practices:
 
-**Email:** [Your Support Email]  
+**Email:** aditya.soni.dev@gmail.com  
 **Subject Line:** Privacy Policy - YouTube Summarizer General Edition
 
 ### Data Protection Inquiries
@@ -198,7 +198,7 @@ Since we don't collect data, most privacy concerns are addressed by our design. 
 ### Security Issues
 If you discover a security vulnerability in our extension:
 
-**Email:** [Your Security Email]  
+**Email:** aditya.soni.dev@gmail.com  
 **Subject Line:** Security Report - YouTube Summarizer General Edition
 
 ---
