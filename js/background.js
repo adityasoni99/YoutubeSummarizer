@@ -159,7 +159,7 @@ ${transcript}
 
 TASK:
 1. Identify ${maxTopics} main topics or themes from this video content (or fewer if the content doesn't support that many).
-2. For each topic, create a detailed paragraph (2-3 sentences) that explains the key points and insights.
+2. For each topic, create a detailed paragraph (2-3 sentences) that summarizes what the video specifically says about this topic, using only information from the transcript provided above.
 3. Create a professional yet engaging initial summary of the overall video (150-200 words).
 4. Format your response as JSON following this structure:
 
@@ -168,7 +168,7 @@ TASK:
     {
       "id": 1,
       "name": "First Topic Name",
-      "content": "A detailed paragraph explaining this topic's key points, main insights, and how it relates to the overall video content. Include specific details and examples when possible."
+      "content": "A detailed paragraph summarizing what the video specifically says about this topic. Base this entirely on the transcript content provided above, including specific details and examples mentioned in the video."
     },
     // more topics...
   ],
