@@ -144,11 +144,12 @@ class YouTubeSummarizerFlow {
     const maxTopics = settings.maxTopics || 5;
 
     // Truncate transcript if too long to avoid API limits
-    const maxLength = 800000;
-    const transcript =
-      this.shared.transcript.length > maxLength
-        ? this.shared.transcript.substring(0, maxLength) + "..."
-        : this.shared.transcript;
+    // const maxLength = 800000;
+    // const transcript =
+    //   this.shared.transcript.length > maxLength
+    //     ? this.shared.transcript.substring(0, maxLength) + "..."
+    //     : this.shared.transcript;
+    const transcript = this.shared.transcript;
 
     const prompt = `You are analyzing a YouTube video to identify the main topics discussed and creating an initial summary.
 
@@ -567,12 +568,13 @@ ${JSON.stringify(this.shared.topicConnections, null, 2)}
 TASK:
 Create a thorough and informative detailed summary that:
 1. Uses professional language appropriate for ${complexityLevel} complexity level
-2. Captures the main points and how they connect
+2. Captures the main points and how they connect based ONLY on the processed topics and connections provided above
 3. Is approximately ${targetLength}
 4. ${detailInstruction}
 5. ${formatInstruction}
 6. ${timestampInstruction}
 7. Uses an engaging yet professional tone
+8. Base your summary entirely on the information provided above - do not add external knowledge or information not mentioned in the processed topics
 
 SUMMARY:`;
 
